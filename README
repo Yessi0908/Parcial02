@@ -1,0 +1,57 @@
+# Sistema de Gestión de Productos de Panadería – API CRUD con PostgreSQL
+
+## Descripción
+Construir una **API REST** con **FastAPI** para gestionar el catálogo de productos de una panadería. Usar **PostgreSQL** como BD, **SQLAlchemy** como ORM y **Alembic** para migraciones. El sistema permitirá operaciones **CRUD** sin autenticación, con **tests automáticos**.  
+Se entregará en plataforma:
+- Docker funcionando
+- Unit test 100% pasados exitosamente
+- Make file picture
+- Swagger Docs
+- Github URL
+- pytest
+
+---
+
+## Reglas de Negocio
+Entidad: **Producto**
+- id: autoincremental
+- nombre: obligatorio (≤150)
+- sku: único (ej. PAN-0001)
+- categoria: `"Pan" | "Pastelería" | "Bebidas" | "Otros"`
+- precio_unitario: >0 (2 decimales)
+- stock: ≥0
+- disponible: bool (def. true)
+- fecha_registro: auto (NOW)
+- fecha_actualizacion: auto en update  
+
+Validaciones: SKU único, precio/stock válidos, categoría válida.
+
+---
+
+## Endpoints
+1. **POST** `/apiv1/productos/` → Crear producto  
+2. **GET** `/apiv1/productos/` → Listar todos  
+3. **GET** `/apiv1/productos/{id}` → Consultar por ID  
+4. **PUT** `/apiv1/productos/{id}` → Actualizar  
+5. **DELETE** `/apiv1/productos/{id}` → Eliminar  
+
+---
+
+## Datos de Prueba
+```json
+[
+  {
+    "nombre":"PanFrancés",
+    "sku":"PAN-0001",
+    "categoria":"Pan",
+    "precio_unitario":1.25,
+    "stock":120
+  },
+  {
+    "nombre":"Croissant",
+    "sku":"PAS-0101",
+    "categoria":"Pastelería",
+    "precio_unitario":2.75,
+    "stock":60
+  }
+]
